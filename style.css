@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-size: 12pt;
+}
+
+.page {
+    background-color: hsl(60,60%,80%);
+    display: flex;
+}
+
+.left {
+    border-right: 2px solid black;
+    height: 100vh;
+    width: 30%;
+}
+
+.title {
+    font-size: 3rem;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.author {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.main {
+    width: 70%;
+}
+
+.pad {
+    border: 3px double black;
+    display: grid;
+    margin: 10px auto;
+}
+
+.square {
+    background-color: white;
+}
+
+.controls {
+    font-size: 1.5rem;
+    margin: 0 auto;
+    width: fit-content;
+}

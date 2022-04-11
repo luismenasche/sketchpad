@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Luis Menasché">
+  <meta name="description" content="Sketchpad Application">
+  <meta name="keywords" content="Sketchpad">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Sketchpad</title>
+  <script src="script.js" defer></script>
+</head>
+<body class="page">
+  <aside class="left">
+    <h1 class="title">Sketchpad</h1>
+    <p class="author">Author: Luis Menasché</p>
+    <section class="controls">
+      <label for="squares">Number of rows and columns: </label>
+      <input type="number" min="1" max="100" value="16" id="sqnum">
+      <button type="button" id="btbuild">Build!</button>
+    </section>
+  </aside>
+  <main class="main" id="main">
+    <div class="pad" id="pad"></div>
+  </main>
+</body>
+</html>
