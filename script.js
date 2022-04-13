@@ -1,7 +1,11 @@
-const inputSqNum = document.getElementById("sqnum");
-const btBuild = document.getElementById("btbuild");
-//const main = document.getElementById("main");
+const header = document.getElementById("header");
+const main = document.getElementById("main");
 const pad = document.getElementById("pad");
+const inputSqNum = document.getElementById("sqnum");
+const message = document.getElementById("message");
+const btBuild = document.getElementById("btbuild");
+const btClear = document.getElementById("btclear");
+let penOn = false;
 let sqNum;
 
 function buildPad() {
@@ -15,6 +19,8 @@ function buildPad() {
             sq.classList.add("square");
             sq.setAttribute("data-light","100");
             sq.addEventListener("mouseover", ev => {
+                if (!penOn)
+                    return;
                 let light = Number(ev.target.getAttribute("data-light"));
                 if (light >= 10)
                     light -= 10;
@@ -27,8 +33,8 @@ function buildPad() {
 }
 
 function sizeSquares() {
-    const padSize = 0.95 * Math.min(window.innerHeight, 
-        0.7 * window.innerWidth);
+    main.style.height = `${window.innerHeight - header.offsetHeight}px`;
+    const padSize = 0.95 * Math.min(main.clientHeight, main.clientWidth);
     const sqSize = Math.floor(padSize / sqNum);
     for (let sq of pad.children) {
         sq.style.width = `${sqSize}px`;
@@ -43,4 +49,22 @@ buildPad();
 sizeSquares();
 
 window.addEventListener("resize", sizeSquares);
+pad.addEventListener("click", () => penOn = !penOn);
+pad.addEventListener("mouseleave", () => penOn = false);
+inputSqNum.addEventListener("input", () => {
+    if (!inputSqNum.checkValidity()) {
+        btBuild.disabled = true;
+        message.textContent = inputSqNum.validationMessage;
+    }
+    else {
+        btBuild.disabled = false;
+        message.textContent = "";
+    }
+});
 btBuild.addEventListener("click", buildPad);
+btClear.addEventListener("click", () => {
+    for (let sq of pad.children) {
+        sq.setAttribute("data-light", 100);
+        sq.style.backgroundColor = "white";
+    }
+});

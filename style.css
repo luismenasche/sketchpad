@@ -10,13 +10,10 @@
 
 .page {
     background-color: hsl(60,60%,80%);
-    display: flex;
 }
 
-.left {
-    border-right: 2px solid black;
-    height: 100vh;
-    width: 30%;
+.header {
+    border-bottom: 2px solid black;
 }
 
 .title {
@@ -27,17 +24,19 @@
 
 .author {
     font-size: 0.9rem;
+    padding-bottom: 10px;
     text-align: center;
 }
 
 .main {
-    width: 70%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .pad {
     border: 3px double black;
     display: grid;
-    margin: 10px auto;
+    margin: 10px 0;
 }
 
 .square {
@@ -45,7 +44,27 @@
 }
 
 .controls {
-    font-size: 1.5rem;
-    margin: 0 auto;
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-between;
+    margin: auto 0;
+}
+
+.sqnum, .button {
+    border: 0;
+    border-radius: 10px;
+    font-weight: bold;
+    outline: 1px solid black;
+    padding: 5px;
+}
+
+.sqnum:invalid {
+    color: red;
+    outline: 2px solid red;
+}
+
+.message {
+    color: red;
+    font-size: 0.9rem;
 }

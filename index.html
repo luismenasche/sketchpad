@@ -12,17 +12,19 @@
   <script src="script.js" defer></script>
 </head>
 <body class="page">
-  <aside class="left">
+  <header class="header" id="header">
     <h1 class="title">Sketchpad</h1>
     <p class="author">Author: Luis Menasché</p>
-    <section class="controls">
-      <label for="squares">Number of rows and columns: </label>
-      <input type="number" min="1" max="100" value="16" id="sqnum">
-      <button type="button" id="btbuild">Build!</button>
-    </section>
-  </aside>
+  </header>
   <main class="main" id="main">
     <div class="pad" id="pad"></div>
+    <section class="controls">
+      <label for="sqnum">Number of rows and columns: </label>
+      <input type="number" min="1" max="100" value="16" class="sqnum" id="sqnum">
+      <span class="message" id="message"></span>
+      <button type="button" class="button" id="btbuild">Build</button>
+      <button type="button" class="button" id="btclear">Clear</button>
+    </section>
   </main>
 </body>
 </html>
