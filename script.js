@@ -5,7 +5,7 @@ const inputSqNum = document.getElementById("sqnum");
 const message = document.getElementById("message");
 const btBuild = document.getElementById("btbuild");
 const btClear = document.getElementById("btclear");
-let penOn = false;
+let penOn = false, eraserOn = false;
 let sqNum;
 
 function buildPad() {
@@ -19,11 +19,16 @@ function buildPad() {
             sq.classList.add("square");
             sq.setAttribute("data-light","100");
             sq.addEventListener("mouseover", ev => {
-                if (!penOn)
+                let light;
+                if (!penOn && !eraserOn)
                     return;
-                let light = Number(ev.target.getAttribute("data-light"));
-                if (light >= 10)
-                    light -= 10;
+                else if (penOn) {
+                    light = Number(ev.target.getAttribute("data-light"));
+                    if (light >= 10)
+                        light -= 10;
+                }
+                else
+                    light = 100;
                 ev.target.setAttribute("data-light",String(light));
                 ev.target.style.backgroundColor = `hsl(0,0%,${light}%)`;
             });
@@ -49,7 +54,15 @@ buildPad();
 sizeSquares();
 
 window.addEventListener("resize", sizeSquares);
-pad.addEventListener("click", () => penOn = !penOn);
+pad.addEventListener("click", () => {
+    penOn = !penOn;
+    eraserOn = false;
+});
+pad.addEventListener("contextmenu", ev => {
+    ev.preventDefault();
+    eraserOn = !eraserOn;
+    penOn = false;
+});
 pad.addEventListener("mouseleave", () => penOn = false);
 inputSqNum.addEventListener("input", () => {
     if (!inputSqNum.checkValidity()) {
