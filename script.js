@@ -2,9 +2,11 @@ const header = document.getElementById("header");
 const main = document.getElementById("main");
 const pad = document.getElementById("pad");
 const inputSqNum = document.getElementById("sqnum");
-const message = document.getElementById("message");
 const btBuild = document.getElementById("btbuild");
+const btPen = document.getElementById("btpen");
+const btEraser = document.getElementById("bteraser");
 const btClear = document.getElementById("btclear");
+
 let penOn = false, eraserOn = false;
 let sqNum;
 
@@ -49,29 +51,58 @@ function sizeSquares() {
     pad.style.height = `${sqNum * sqSize + 6}px`;
 }
 
+function togglePen() {
+    penOn = !penOn;
+    btPen.classList.toggle("button--on");
+    if (btPen.classList.contains("button--on"))
+        btPen.textContent = "Pen ON";
+    else
+        btPen.textContent = "Pen off";
+    eraserOn = false;
+    btEraser.classList.remove("button--on");
+    btEraser.textContent = "Eraser off";
+}
+
+function toggleEraser() {
+    eraserOn = !eraserOn;
+    btEraser.classList.toggle("button--on");
+    if (btEraser.classList.contains("button--on"))
+        btEraser.textContent = "Eraser ON";
+    else
+        btEraser.textContent = "Eraser off";
+    penOn = false;
+    btPen.classList.remove("button--on");
+    btPen.textContent = "Pen off";
+}
+
 inputSqNum.value = 16;
 buildPad();
 sizeSquares();
 
 window.addEventListener("resize", sizeSquares);
-pad.addEventListener("click", () => {
-    penOn = !penOn;
-    eraserOn = false;
-});
+pad.addEventListener("click", togglePen);
+btPen.addEventListener("click", togglePen);
 pad.addEventListener("contextmenu", ev => {
     ev.preventDefault();
-    eraserOn = !eraserOn;
-    penOn = false;
+    toggleEraser();
 });
-pad.addEventListener("mouseleave", () => penOn = false);
+btEraser.addEventListener("click", toggleEraser);
+pad.addEventListener("mouseleave", () => {
+    penOn = false;
+    btPen.classList.remove("button--on");
+    btPen.textContent = "Pen off";
+    eraserOn = false;
+    btEraser.classList.remove("button--on");
+    btEraser.textContent = "Eraser off";
+});
 inputSqNum.addEventListener("input", () => {
     if (!inputSqNum.checkValidity()) {
         btBuild.disabled = true;
-        message.textContent = inputSqNum.validationMessage;
+        btBuild.textContent = inputSqNum.validationMessage;
     }
     else {
         btBuild.disabled = false;
-        message.textContent = "";
+        btBuild.textContent = "Build";
     }
 });
 btBuild.addEventListener("click", buildPad);
