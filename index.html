@@ -15,6 +15,7 @@
   <header class="header" id="header">
     <h1 class="title">Sketchpad</h1>
     <p class="author">Author: Luis Menasché</p>
+<<<<<<< HEAD
   </header>
   <main class="main" id="main">
     <div class="pad" id="pad"></div>
@@ -26,6 +27,39 @@
       <button type="button" class="button" id="bteraser">Eraser off</button>
       <button type="button" class="button" id="btclear">Clear</button>
     </section>
+=======
+    <section class="controls">
+      <div class="left">
+        <label for="sqnum">Number of rows and columns: </label>
+        <input type="number" min="1" max="100" value="16" class="sqnum" id="sqnum">
+        <button type="button" class="button" id="btbuild">Build</button>
+      </div>
+      <div class="right">
+        <button type="button" class="button" id="btpen">Pen off</button>
+        <button type="button" class="button" id="bteraser">Eraser off</button>
+        <button type="button" class="button" id="btclear">Clear</button
+      </div>
+    </section>
+  </header>
+  <main class="main" id="main">
+    <div class="pad" id="pad"></div>
+    <span class="message" id="message"></span>
+    <div class="help" id="help">
+      <p class="help-title">Help</p>
+      <p class="help-p">Clicking the left mouse button anywhere in the main 
+        area of the page switches the pen on and off.
+      </p>
+      <p class="help-p">Clicking the right mouse button anywhere in the 
+        main area of the page switches the eraser on and off.
+      </p>
+      <p class="help-p">Changing the dimension in the input field is not 
+        enough to build a new pad. A new pad is only built when the 
+        "Build" button is clicked.
+      </p>
+      <p class="help-p">Click to close this window.</p>
+    </div>
+    <button type="button" class="button button--help" id="bthelp">?</button>
+>>>>>>> 215f1b4 (First version)
   </main>
 </body>
 </html>
