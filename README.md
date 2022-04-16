@@ -4,7 +4,7 @@ This is an [exercise](https://www.theodinproject.com/lessons/foundations-etch-a-
 
 It is a sketchpad where the user can draw by moving the mouse over it. The more the mouse goes over a space, the darker it becomes.
 
-Some functionalities that were not in the exercise description were added, like an eraser and the "Clear" button.
+Some functionalities that were not in the exercise description were added, like an eraser and an input element to change the number of rows and columns in the pad.
 
 ## Technologies Employed
 
