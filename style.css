@@ -12,17 +12,8 @@
     background-color: hsl(60,60%,80%);
 }
 
-<<<<<<< HEAD
-.header {
-    border-bottom: 2px solid black;
-}
-
-.title {
-    font-size: 3rem;
-=======
 .title {
     font-size: 2.5rem;
->>>>>>> 215f1b4 (First version)
     padding: 10px 0;
     text-align: center;
 }
@@ -36,20 +27,13 @@
 .main {
     display: flex;
     justify-content: space-around;
-<<<<<<< HEAD
-=======
     position: relative;
->>>>>>> 215f1b4 (First version)
 }
 
 .pad {
     border: 3px double black;
     display: grid;
-<<<<<<< HEAD
-    margin: 10px 0;
-=======
     margin: auto 0;
->>>>>>> 215f1b4 (First version)
 }
 
 .square {
@@ -57,33 +41,21 @@
 }
 
 .controls {
-<<<<<<< HEAD
-    display: flex;
-    flex-direction: column;
-    margin: auto 0;
-=======
     border-bottom: 2px solid black;
     border-top: 2px solid black;
     display: flex;
     justify-content: space-between;
     padding: 10px;
->>>>>>> 215f1b4 (First version)
 }
 
 .sqnum, .button {
     border: 0;
     border-radius: 10px;
     font-weight: bold;
-<<<<<<< HEAD
-    margin: 5px 0;
-    outline: 1px solid black;
-    padding: 5px;
-=======
     margin: 2px 5px;
     outline: 1px solid black;
     padding: 5px;
     width: 76px;
->>>>>>> 215f1b4 (First version)
 }
 
 .sqnum {
@@ -95,11 +67,6 @@
     outline: 2px solid red;
 }
 
-<<<<<<< HEAD
-.sqnum:invalid ~ .btbuild {
-    color: red;
-    outline: 2px solid red;
-=======
 .button--help {
     border-radius: 50%;
     bottom: 5px;
@@ -109,7 +76,6 @@
     position: absolute;
     right: 5px;
     width: 30px;
->>>>>>> 215f1b4 (First version)
 }
 
 .button--on {
@@ -117,16 +83,6 @@
     color: hsl(60,60%,80%);
 }
 
-<<<<<<< HEAD
-.btbuild {
-    margin-bottom: 40px;
-}
-
-.message {
-    color: red;
-    font-size: 0.9rem;
-    text-align: center;
-=======
 .message {
     background-color: white;
     color: red;
@@ -161,5 +117,4 @@
 
 .help-p {
     margin-top: 10px;
->>>>>>> 215f1b4 (First version)
 }
