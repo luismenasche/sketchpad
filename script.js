@@ -11,49 +11,66 @@ const help = document.getElementById("help");
 const btHelp = document.getElementById("bthelp");
 
 let penOn = false, eraserOn = false, disabled = false;
-let sqNum;
+let sqNum, sqSize, squares;
+let lastX = -1, lastY = -1;
 
 function buildPad() {
-    let i, j, sq;
+    let i, j, sq, row;
     if (disabled)
         return;
     sqNum = inputSqNum.value;
+    squares = [];
     pad.replaceChildren([]);
     pad.style.gridTemplateColumns = `repeat(${sqNum},1fr)`;
     for (i = 0; i < sqNum; i++) {
+        row = [];
         for (j = 0; j < sqNum; j++) {
             sq = document.createElement("div");
             sq.classList.add("square");
             sq.setAttribute("data-light","100");
-            sq.addEventListener("mouseover", ev => {
-                let light;
-                if ((!penOn && !eraserOn) || disabled)
-                    return;
-                else if (penOn) {
-                    light = Number(ev.target.getAttribute("data-light"));
-                    if (light >= 10)
-                        light -= 10;
-                }
-                else
-                    light = 100;
-                ev.target.setAttribute("data-light",String(light));
-                ev.target.style.backgroundColor = `hsl(0,0%,${light}%)`;
-            });
-            pad.appendChild(sq);
+            row.push(sq);
+            pad.appendChild(sq);           
         }
+        squares.push(row);
     }
+    sizeSquares();
 }
 
 function sizeSquares() {
     main.style.height = `${window.innerHeight - header.offsetHeight}px`;
     const padSize = 0.98 * Math.min(main.clientHeight, main.clientWidth);
-    const sqSize = Math.floor(padSize / sqNum);
+    sqSize = Math.floor(padSize / sqNum);
     for (let sq of pad.children) {
         sq.style.width = `${sqSize}px`;
         sq.style.height = `${sqSize}px`;
     }
     pad.style.width = `${sqNum * sqSize + 6}px`;
     pad.style.height = `${sqNum * sqSize + 6}px`;
+}
+
+function paint(ev) {
+    let light, x, y, sq;
+    if ((!penOn && !eraserOn) || disabled)
+        return;
+    x = Math.floor(ev.offsetX / sqSize);
+    y = Math.floor(ev.offsetY / sqSize);
+    console.log(x,y);
+    if ((x < 0) || (x >= sqNum) || (y < 0) || (y >= sqNum))
+        return;
+    if ((x == lastX) && (y == lastY))
+        return;
+    lastX = x;
+    lastY = y;
+    sq = squares[y][x];
+    if (penOn) {
+        light = Number(sq.getAttribute("data-light"));
+        if (light >= 10)
+            light -= 10;
+    }
+    else //eraserOn
+        light = 100;
+    sq.setAttribute("data-light",String(light));
+    sq.style.backgroundColor = `hsl(0,0%,${light}%)`;
 }
 
 function togglePen() {
@@ -95,9 +112,9 @@ function turnOff() {
 
 inputSqNum.value = 16;
 buildPad();
-sizeSquares();
 
 window.addEventListener("resize", sizeSquares);
+pad.addEventListener("pointermove", paint);
 main.addEventListener("click", togglePen);
 btPen.addEventListener("click", togglePen);
 main.addEventListener("contextmenu", ev => {

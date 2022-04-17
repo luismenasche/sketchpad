@@ -34,10 +34,12 @@
     border: 3px double black;
     display: grid;
     margin: auto 0;
+    touch-action: none;
 }
 
 .square {
     background-color: white;
+    pointer-events: none;
 }
 
 .controls {
